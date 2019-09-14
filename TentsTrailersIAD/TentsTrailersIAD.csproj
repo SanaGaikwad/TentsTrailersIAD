@@ -575,6 +575,7 @@
     <Content Include="Views\Ratings\Details.cshtml" />
     <Content Include="Views\Ratings\Edit.cshtml" />
     <Content Include="Views\Ratings\Index.cshtml" />
+    <Content Include="Views\Registrations\MyBookings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -4,13 +4,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ListView</h2>
-
-
 <h2>Choose your stay</h2>
 
+
 @*<div style=" width=90%; margin: 0 auto;">*@
-<table class="table">
+
+<table class="table" style="margin-left:10px" width="100%">
     <thead>
         <tr>
             <th>
@@ -31,49 +30,57 @@
             <th>
                 @Html.DisplayNameFor(model => model.Location)
             </th>
+            <th></th>
+           
+
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CampId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Type)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Accomodates)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Location)
-                </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CampId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Accomodates)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
 
-                <td>@Html.ActionLink("Details", "Details", new { id = item.CampId })</td>
-                @if (User.Identity.IsAuthenticated)
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.CampId })
+
+
+                @if (User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
                 {
-                    <td>@Html.ActionLink("Book Now", "Create", "Members")</td>
-                }
 
-            </tr>
+                    @Html.ActionLink("Book", "Create", "Bookings")
+                }
+            </td>
+        </tr>
         }
     </tbody>
 </table>
-@section Scripts {
-    @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.js")
-    @Scripts.Render("~/Scripts/DataTables/dataTables.bootstrap.js")
-    <script>
-        $(document).ready(function () {
-            $('.table').DataTable();
-        });
-    </script>
-  
-}
+
+    @section Scripts {
+        @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.js")
+        @Scripts.Render("~/Scripts/DataTables/dataTables.bootstrap.js")
+        <script type="text/javascript" async>
+            $(document).ready(function () {
+                $('.table').DataTable();
+            });
+        </script>
+
+    }
 <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />

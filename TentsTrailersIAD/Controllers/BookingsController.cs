@@ -17,8 +17,7 @@ namespace TentsTrailersIAD.Controllers
         // GET: Bookings
         public ActionResult Index()
         {
-            var bookings = db.Bookings.Include(b => b.Campsite);
-            return View(bookings.ToList());
+            return View(db.Bookings.ToList());
         }
 
         // GET: Bookings/Details/5
@@ -39,7 +38,7 @@ namespace TentsTrailersIAD.Controllers
         // GET: Bookings/Create
         public ActionResult Create()
         {
-            ViewBag.CampId = new SelectList(db.Campsites, "CampId", "Description");
+            ViewBag.CampId = new SelectList(db.Campsites, "CampId", "CampId");
             return View();
         }
 
@@ -50,14 +49,16 @@ namespace TentsTrailersIAD.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "BookingId,CampId,BookingDate,BookingStartDate,BookingEnddate,BookingStatus")] Booking booking)
         {
+
+
             if (ModelState.IsValid)
             {
                 db.Bookings.Add(booking);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create", "Members");
             }
 
-            ViewBag.CampId = new SelectList(db.Campsites, "CampId", "Description", booking.CampId);
+            ViewBag.CampId = new SelectList(db.Campsites, "CampId", "CampId", booking.CampId);
             return View(booking);
         }
 
@@ -73,7 +74,7 @@ namespace TentsTrailersIAD.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CampId = new SelectList(db.Campsites, "CampId", "Description", booking.CampId);
+            ViewBag.CampId = new SelectList(db.Campsites, "CampId", "CampId", booking.CampId);
             return View(booking);
         }
 
@@ -90,7 +91,7 @@ namespace TentsTrailersIAD.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CampId = new SelectList(db.Campsites, "CampId", "Description", booking.CampId);
+            ViewBag.CampId = new SelectList(db.Campsites, "CampId", "CampId", booking.CampId);
             return View(booking);
         }
 

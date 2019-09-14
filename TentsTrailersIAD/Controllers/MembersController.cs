@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -48,13 +49,18 @@ namespace TentsTrailersIAD.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "MemberId,FirstName,LastName,ContactNo,Email,UserId")] Member member)
         {
+
+            member.UserId = User.Identity.GetUserId();
+            ModelState.Clear();
+            TryValidateModel(member);
             if (ModelState.IsValid)
             {
                 db.Members.Add(member);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create", "Bookings");
             }
 
             ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", member.UserId);

@@ -21,6 +21,12 @@ namespace TentsTrailersIAD.Controllers
             return View(registrations.ToList());
         }
 
+        public ActionResult MyBookings()
+        {
+            var registrations = db.Registrations.Include(r => r.Booking).Include(r => r.Member);
+            return View(registrations.ToList());
+        }
+
         // GET: Registrations/Details/5
         public ActionResult Details(int? id)
         {

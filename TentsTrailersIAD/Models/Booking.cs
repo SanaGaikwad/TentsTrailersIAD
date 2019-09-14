@@ -11,7 +11,9 @@ namespace TentsTrailersIAD.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class Booking
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,8 +24,22 @@ namespace TentsTrailersIAD.Models
     
         public int BookingId { get; set; }
         public int CampId { get; set; }
+
+      
         public System.DateTime BookingDate { get; set; }
+
+        [Required]
+        [Column(TypeName = "date")]
+        [Display(Name = " Booking Start Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public System.DateTime BookingStartDate { get; set; }
+
+        [Required]
+        [Column(TypeName = "date")]
+        [Display(Name = " Booking End Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public System.DateTime BookingEnddate { get; set; }
         public string BookingStatus { get; set; }
     
