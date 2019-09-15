@@ -1,6 +1,11 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<head>
+
+    @Styles.Render("~/Content/MyScripts/StayYourStay.css")
+
+</head>
 
 <body>
 
@@ -15,15 +20,15 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" style="height:inherit; width:inherit; margin-top:50px;align-content:center;">
                 <div class="item ">
-                <img src="~/Content/Images/Bimbi-Park-Caravan-Park-Sites.jpg" alt="Camping park" style="width:2048px; height:700x; ">
-                <div class="carousel-caption">
-                    <h1>Gear up</h1>
-                </div>
+                    <img src="~/Content/Images/Bimbi-Park-Caravan-Park-Sites.jpg" alt="Camping park" style="width:2048px; height:700px; ">
+                    <div class="carousel-caption">
+                        <h1>Gear up</h1>
+                    </div>
                 </div>
                 <div class="item active">
                     <img src="~/Content/Images/koalas.jpg" alt="koala" style="width:2048px; height:700px;">
                     <div class="carousel-caption">
-                     <h1>Camping with Koalas</h1>
+                        <h1>Camping with Koalas</h1>
                     </div>
                 </div>
                 <div class="item">
@@ -44,6 +49,10 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
+    </div>
+    <br>
+    <div class=" wrapper" style="text-align:center">
+        <a href="https://localhost:44392/Campsites/ListView" class="button" style="align-content:center">Start Your Stay</a>
     </div>
 
 
