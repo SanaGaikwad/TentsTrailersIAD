@@ -11,7 +11,7 @@ using Microsoft.Owin.Security;
 using TentsTrailersIAD.Models;
 
 namespace TentsTrailersIAD.Controllers
-{
+{   [RequireHttps]
     [Authorize]
     public class AccountController : Controller
     {

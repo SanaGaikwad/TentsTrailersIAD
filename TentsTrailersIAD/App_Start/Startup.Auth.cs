@@ -58,11 +58,11 @@ namespace TentsTrailersIAD
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "68402901569-gimkgjd4uaf01mk6f13pg0orghma6oko.apps.googleusercontent.com",
+                ClientSecret = "3gmFyk2tiedExWWhX_ZrYmRn"
+            });
         }
     }
 }
