@@ -3,6 +3,11 @@
     ViewBag.Title = "ListView";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+    <head>
+        @Styles.Render("~/Content/MyScripts/Campsite_section_images.css")
+
+    </head>
+   
 
 <h2>Choose your stay</h2>
 
@@ -31,56 +36,103 @@
                 @Html.DisplayNameFor(model => model.Location)
             </th>
             <th></th>
-           
+
 
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CampId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Accomodates)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location)
-            </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CampId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Accomodates)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
 
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = item.CampId })
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.CampId })
 
 
-                @if (User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
-                {
+                    @if (User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
+                    {
 
-                    @Html.ActionLink("Book", "Create", "Bookings")
-                }
-            </td>
-        </tr>
+                        @Html.ActionLink("Book", "Create", "Bookings")
+                    }
+                </td>
+            </tr>
         }
     </tbody>
 </table>
 
-    @section Scripts {
-        @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.js")
-        @Scripts.Render("~/Scripts/DataTables/dataTables.bootstrap.js")
-        <script type="text/javascript" async>
-            $(document).ready(function () {
-                $('.table').DataTable();
-            });
-        </script>
+<br>
 
-    }
+<div class="row">
+
+    <div class="column">
+        <img src="~/Content/Images/camp1.jpg" style="width:100%" />
+    </div>
+    <div class="column">
+        <img src="~/Content/Images/camp2.jpg" style="width:100%" />
+    </div>
+    <div class="column">
+        <img src="~/Content/Images/camp3.jpg" style="width:100%" />
+    </div>
+    <div class="column">
+        <img src="~/Content/Images/camp5a.jpg"  style="width:100%"/>
+    </div>
+
+</div>
+
+
+
+<div class="row">
+
+    <div class="column">
+
+        <img src="~/Content/Images/camp4.jpg" style="width:100%" />
+    </div>
+    <div class="column">
+
+        <img src="~/Content/Images/camp8.jpg" style="width:100%" />
+    </div>
+
+    <div class="column">
+
+        <img src="~/Content/Images/camp6.jpg" style="width:100%" />
+    </div>
+    <div class="column">
+
+        <img src="~/Content/Images/camp7.jpg" style="width:100%" />
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.js")
+    @Scripts.Render("~/Scripts/DataTables/dataTables.bootstrap.js")
+    <script type="text/javascript" async>
+        $(document).ready(function () {
+            $('.table').DataTable();
+        });
+    </script>
+
+}
 <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+
+
