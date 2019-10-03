@@ -11,8 +11,7 @@ namespace TentsTrailersIAD.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Member
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,28 +21,9 @@ namespace TentsTrailersIAD.Models
         }
     
         public int MemberId { get; set; }
-
-        [Required]
-        [RegularExpression(@"^[A-Za-z]+$", ErrorMessage = "Please eneter a valid first name")]
-        [StringLength(30)]
-        [Display(Name = "First Name")]
         public string FirstName { get; set; }
-
-        [Required]
-        [RegularExpression(@"^[A-Za-z]+$", ErrorMessage = "Please enter a valid last name")]
-        [StringLength(30)]
-        [Display(Name = "Last Name")]
         public string LastName { get; set; }
-
-        [Required]
-        [StringLength(10, MinimumLength = 10, ErrorMessage = "Please enter a 10 digit number")]
-        [RegularExpression(@"^[0-9]*$", ErrorMessage = "Please enter numbers only")]
-        [Display(Name ="Contact No.")]
         public string ContactNo { get; set; }
-
-        [Required]
-        [RegularExpression(@"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z",
-                            ErrorMessage = "Please enter a valid email address")]
         public string Email { get; set; }
         public string UserId { get; set; }
     

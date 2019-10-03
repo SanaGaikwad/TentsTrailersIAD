@@ -35,6 +35,7 @@ namespace TentsTrailersIAD.Controllers
             return View(booking);
         }
 
+
         // GET: Bookings/Create
         public ActionResult Create()
         {
@@ -45,17 +46,42 @@ namespace TentsTrailersIAD.Controllers
         // POST: Bookings/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BookingId,CampId,BookingDate,BookingStartDate,BookingEnddate,BookingStatus")] Booking booking)
+        public ActionResult Create([Bind(Include = "BookingId,CampId,BookingDate,BookingStartDate,BookingEnddate,BookingStatus")] Booking booking, int id)
         {
 
 
             if (ModelState.IsValid)
             {
-                db.Bookings.Add(booking);
-                db.SaveChanges();
-                return RedirectToAction("Create", "Members");
+                try
+                {
+                    if (booking.BookingStartDate < DateTime.Today)
+                    {
+                        ViewBag.StartDateError = "Start Date cannot be less that today's date";
+                    }
+                    else if (booking.BookingEnddate < booking.BookingStartDate)
+                    {
+                        ViewBag.EndDateError = "End date cannot be less that Start date";
+                    }
+                    else
+                    {
+                        booking.CampId = id;
+                        booking.BookingDate = System.DateTime.Now;
+                        booking.BookingStatus = "confirmed";
+                        db.Bookings.Add(booking);
+                        db.SaveChanges();
+                        return RedirectToAction("Create", "Members");
+
+                    }
+                   
+                }
+                catch
+                {
+                    return View();
+                }
+                
             }
 
             ViewBag.CampId = new SelectList(db.Campsites, "CampId", "CampId", booking.CampId);

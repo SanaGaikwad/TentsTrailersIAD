@@ -25,21 +25,21 @@ namespace TentsTrailersIAD.Models
         public int BookingId { get; set; }
         public int CampId { get; set; }
 
-      
+        [Column(TypeName = "date")]
+        [Display(Name = "Booking Date")]
+        string currentDate = System.DateTime.Now.ToString();
+        
         public System.DateTime BookingDate { get; set; }
 
         [Required]
         [Column(TypeName = "date")]
         [Display(Name = " Booking Start Date")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public System.DateTime BookingStartDate { get; set; }
 
         [Required]
         [Column(TypeName = "date")]
         [Display(Name = " Booking End Date")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+
         public System.DateTime BookingEnddate { get; set; }
         public string BookingStatus { get; set; }
     

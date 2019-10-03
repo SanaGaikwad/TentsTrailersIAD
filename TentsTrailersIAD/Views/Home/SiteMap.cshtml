@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Display driving directions</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        /*#map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            padding-right:20px;
+            width: 80%;
+            padding-top:40px;
+            height:500px;
+        }*/
+        #marker {
+           
+            background-size: cover;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js'></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css' type='text/css' />
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.css' type='text/css' />
+    <div id='map' style="height:500px; width:80%; padding-right:20px; margin-top:70px;align-content:center; position:absolute"></div>
+
+
+    <
+        <div class="row" style="width:80%;padding-right:20px; margin-top:600px;align-content:center; position:absolute">
+            <div class="col-md-4">
+                <h2>By Car</h2>
+                <p style="text-align:justify">
+                    <b>From Melbourne</b> (About 3 hours)Go to Geelong. 
+                    It is a 55-minute drive via the West Gate and Princes freeways. 
+                    A network of highways also link regional centres to Geelong and 
+                    various other points along the Great Ocean Road.
+                    <br>
+                    <b>From Sydney</b> (About 14 Hours)
+                    You can take the Hume Freeway and then travel to Geelong via
+                    the Western Ring Road and Princes Freeway. (This trip takes
+                    around 12 hours. Most travellers break their journey with 
+                    an overnight stop.
+                </p>
+               
+            </div>
+            <div class="col-md-4">
+                <h2>By Plane</h2>
+                <p style="text-align:justify">
+                    From Melbourne Airport (Tullamarine)
+                    Regular flights from a range of overseas and domestic destinations
+                    arrive at Melbourne Airport, the closest capital city access point
+                    to Bimbi Park. Geelong is a 55-minute drive away via the Western
+                    Ring Road and the Princes Freeway.
+                </p>
+
+            </div>
+            <div class="col-md-4">
+                <h2>By Bus</h2>
+                <p style="text-align:justify">
+                    A number of daily bus services arrive in Melbourne from various
+                    Australian capital and regional cities. From the New South Wales
+                    capital Sydney, north of the Victorian capital Melbourne, the bus
+                    trip to Melbourne takes about 12 hours.
+                </p>
+
+            </div>
+        </div>
+
+
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1Ijoic2dhaTAwMDIiLCJhIjoiY2sxYXN0dm5mMGI0dTNpb2JvZjV3cDFrbiJ9.q-vke3O9OOqh6CZps2HSgg';
+        var park = [143.55365, -38.75448];
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: park,
+            zoom: 10
+        });
+
+
+
+        map.addControl(new MapboxDirections({
+            accessToken: mapboxgl.accessToken
+        }), 'top-left');
+
+        map.addControl(new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            mapboxgl: mapboxgl
+        }));
+
+
+
+        // create the marker
+        var marker = new mapboxgl.Marker()
+            .setLngLat(park)
+            .addTo(map);
+    </script>
+
+</body>
+</html>

@@ -54,13 +54,14 @@ namespace TentsTrailersIAD.Controllers
         {
 
             member.UserId = User.Identity.GetUserId();
+            member.Email = User.Identity.GetUserName();
             ModelState.Clear();
             TryValidateModel(member);
             if (ModelState.IsValid)
             {
                 db.Members.Add(member);
                 db.SaveChanges();
-                return RedirectToAction("Create", "Bookings");
+                return RedirectToAction("Create", "Registrations");
             }
 
             ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", member.UserId);

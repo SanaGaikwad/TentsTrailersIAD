@@ -64,8 +64,8 @@ namespace TentsTrailersIAD.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BookingId = new SelectList(db.Bookings, "BookingId", "BookingStatus", registration.BookingId);
-            ViewBag.MemberId = new SelectList(db.Members, "MemberId", "FirstName", registration.MemberId);
+            ViewBag.BookingId = new SelectList(db.Bookings, "BookingId", "BookingId", registration.BookingId);
+            ViewBag.MemberId = new SelectList(db.Members, "MemberId", "MemberId", registration.MemberId);
             return View(registration);
         }
 

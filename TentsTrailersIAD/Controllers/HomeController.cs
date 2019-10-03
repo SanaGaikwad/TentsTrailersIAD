@@ -24,6 +24,13 @@ namespace TentsTrailersIAD.Controllers
             return View();
         }
 
+        public ActionResult SiteMap()
+        {
+
+
+            return View();
+        }
+
         public ActionResult Contact()
         {
             return View(new SendEmailViewModel());
@@ -59,5 +66,6 @@ namespace TentsTrailersIAD.Controllers
 
 
     }
+       
     }
 }
