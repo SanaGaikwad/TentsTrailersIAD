@@ -23,13 +23,35 @@
     display: table;
 }
 
-h2{
+h1{
     text-align:center;
     font-family: Arial, Helvetica, sans-serif;
-    font-weight:500;
+    font-weight:bold;
     font-size:32px;
    font-style:inherit;
 
+}
+
+p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 100;
+    font-size: 18px;
+}
+
+.column-content {
+    float: left;
+    width: 50%;
+    padding: 5px;
+}
+
+h2{
+    text-align:center;
+}
+
+@media screen and (max-width: 500px) {
+    .column-content {
+        width: 100%;
+    }
 }
 
 
