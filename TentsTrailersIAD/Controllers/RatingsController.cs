@@ -120,6 +120,12 @@ namespace TentsTrailersIAD.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Rate()
+        {
+            
+            return View();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

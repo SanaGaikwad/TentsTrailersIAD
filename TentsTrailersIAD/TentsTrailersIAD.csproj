@@ -454,6 +454,8 @@
     <Content Include="Content\Images\koalas.jpg" />
     <Content Include="Content\Images\waterfall.jpeg" />
     <Content Include="Content\MyScripts\Campsite_section_images.css" />
+    <Content Include="Content\MyScripts\Rating.css" />
+    <Content Include="Content\MyScripts\UserFeedback.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -632,6 +634,7 @@
     <Content Include="Views\Ratings\Index.cshtml" />
     <Content Include="Views\Registrations\MyBookings.cshtml" />
     <Content Include="Views\Home\SiteMap.cshtml" />
+    <Content Include="Views\Ratings\Rate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -7,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TentsTrailersIAD.Models;
+using TentsTrailersIAD.Utils;
 
 namespace TentsTrailersIAD.Controllers
 {
@@ -17,13 +19,15 @@ namespace TentsTrailersIAD.Controllers
         // GET: Registrations
         public ActionResult Index()
         {
-            var registrations = db.Registrations.Include(r => r.Booking).Include(r => r.Member);
+            string currentUserId = User.Identity.GetUserId();
+            var registrations = db.Registrations.Where(r => r.Member.UserId == currentUserId).Include(r => r.Booking).Include(r => r.Member);
             return View(registrations.ToList());
         }
 
         public ActionResult MyBookings()
         {
-            var registrations = db.Registrations.Include(r => r.Booking).Include(r => r.Member);
+            string currentUserId = User.Identity.GetUserId();
+            var registrations = db.Registrations.Where(r => r.Member.UserId == currentUserId).Include(r => r.Booking).Include(r => r.Member);
             return View(registrations.ToList());
         }
 
@@ -45,9 +49,27 @@ namespace TentsTrailersIAD.Controllers
         // GET: Registrations/Create
         public ActionResult Create()
         {
-            ViewBag.BookingId = new SelectList(db.Bookings, "BookingId", "BookingStatus");
-            ViewBag.MemberId = new SelectList(db.Members, "MemberId", "FirstName");
+            string currentUserId = User.Identity.GetUserId();
+            var fullName = db.Members.Where(m => m.UserId == currentUserId)
+               .Select(a => new SelectListItem
+               {
+                   Value = a.MemberId.ToString(),
+                   Text = a.FirstName + " " + a.LastName
+               });
+            ViewBag.MemberId = new SelectList(fullName, "Value", "Text");
+
+            
+            var bookings = db.Bookings
+               .Select(b => new SelectListItem
+               {
+                   Value = b.BookingId.ToString(),
+                   Text = "Booking id is: "+ b.BookingId + " booked on " + b.BookingDate + "from" + b.BookingStartDate + " to" + b.BookingEnddate
+               });
+            ViewBag.BookingId = new SelectList(bookings, "Value", "Text");
             return View();
+            //ViewBag.BookingId = new SelectList(db.Bookings, "BookingId", "FirstName");
+            //ViewBag.MemberId = new SelectList(db.Members, "MemberId", "Email");
+            //return View();
         }
 
         // POST: Registrations/Create
@@ -57,17 +79,59 @@ namespace TentsTrailersIAD.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,MemberId,BookingId")] Registration registration)
         {
-            if (ModelState.IsValid)
+            bool bl = (db.Registrations.Any(a => a.MemberId == registration.MemberId && a.BookingId == registration.BookingId));
+            if (!bl)
             {
-                db.Registrations.Add(registration);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                if (ModelState.IsValid)
+                {
 
-            ViewBag.BookingId = new SelectList(db.Bookings, "BookingId", "BookingId", registration.BookingId);
-            ViewBag.MemberId = new SelectList(db.Members, "MemberId", "MemberId", registration.MemberId);
+                    db.Registrations.Add(registration);
+                    db.SaveChanges();
+                    try
+                    {
+                        string BookingDetails = db.Bookings.Where(m => m.BookingId == registration.BookingId).ToList().Single().BookingId.ToString();
+                        string status = db.Bookings.Where(m => m.BookingId == registration.BookingId).ToList().Single().BookingStatus.ToString();
+                        string Bookingdate = db.Bookings.Where(m => m.BookingId == registration.BookingId).ToList().Single().BookingDate.ToShortDateString();
+                        string toEmail = db.Members.Where(m => m.MemberId == registration.MemberId).ToList().Single().Email.ToString();
+                        string subject = "Booking Confirmation: Tents&Trailers";
+                        string contents = "Your Booking has been confirmed: " + BookingDetails + " Status " + status + "on" + Bookingdate;
+
+                        EmailSender mail = new EmailSender();
+                        mail.Send(toEmail, subject, contents);
+                        ViewBag.Result = "Thank You. Your booking details have been sent to registered email address!";
+                        return RedirectToAction("Rate", "Ratings");
+                    }
+                    catch
+                    {
+                        return View();
+                    }
+                    
+                }
+
+            }
+            else
+            {
+                ViewBag.Result = "Booking Error: You've already been enrolled";
+            }
+            string currentUserId = User.Identity.GetUserId();
+            var fullName = db.Members.Where(m => m.UserId == currentUserId)
+               .Select(a => new SelectListItem
+               {
+                   Value = a.MemberId.ToString(),
+                   Text = a.FirstName + " " + a.LastName
+               });
+            ViewBag.MemberId = new SelectList(fullName, "Value", "Text");
+
+            var bookings = db.Bookings
+               .Select(b => new SelectListItem
+               {
+                   Value = b.BookingId.ToString(),
+                   Text = "Booking id is: " + b.BookingId + " booked on " + b.BookingDate + "from" + b.BookingStartDate + " to" + b.BookingEnddate
+               });
+            ViewBag.BookingId = new SelectList(bookings, "Value", "Text");
             return View(registration);
         }
+
 
         // GET: Registrations/Edit/5
         public ActionResult Edit(int? id)

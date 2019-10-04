@@ -1,8 +1,78 @@
-﻿
+﻿@model IEnumerable<TentsTrailersIAD.Models.Registration>
 @{
     ViewBag.Title = "MyBookings";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<head>
+    @Styles.Render("~/Content/MyScripts/Campsite_section_images.css")
 
+</head>
 <h2>MyBookings</h2>
+<table class="table" style="margin-left:10px" width="100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Member.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Member.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.BookingId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.CampId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.BookingDate) 
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.BookingStatus)
+            </th>
+          
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Member.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Member.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Booking.BookingId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Booking.CampId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Booking.BookingDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Booking.BookingStatus)
+                </td>
+
+               
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.js")
+    @Scripts.Render("~/Scripts/DataTables/dataTables.bootstrap.js")
+    <script type="text/javascript" async>
+        $(document).ready(function () {
+            $('.table').DataTable();
+        });
+    </script>
+
+}
+<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
 
