@@ -19,4 +19,5 @@ namespace TentsTrailersIAD.Utils
             var response = client.SendEmailAsync(msg);
         }
     }
+    
 }
