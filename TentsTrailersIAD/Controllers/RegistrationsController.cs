@@ -49,6 +49,7 @@ namespace TentsTrailersIAD.Controllers
         // GET: Registrations/Create
         public ActionResult Create()
         {
+         
             string currentUserId = User.Identity.GetUserId();
             var fullName = db.Members.Where(m => m.UserId == currentUserId)
                .Select(a => new SelectListItem
@@ -58,15 +59,31 @@ namespace TentsTrailersIAD.Controllers
                });
             ViewBag.MemberId = new SelectList(fullName, "Value", "Text");
 
+            if (Session["BookId"] != null)
+            {
+                //Converting your session variable value to integer
+                int convertKey = Convert.ToInt32(Session["BookId"]);
+                var bookings = db.Bookings.Where(c => c.BookingId == convertKey)
+                  .Select(b => new SelectListItem
+                  {
+                      Value = b.BookingId.ToString(),
+                      Text = "Booking id is: " + b.BookingId + " booked on " + b.BookingDate + "from" + b.BookingStartDate + " to" + b.BookingEnddate
+                  });
+                ViewBag.BookingId = new SelectList(bookings, "Value", "Text");
+                return View();
+            }
+            else
+            {
+                return View();
+            }
+
+           
             
-            var bookings = db.Bookings
-               .Select(b => new SelectListItem
-               {
-                   Value = b.BookingId.ToString(),
-                   Text = "Booking id is: "+ b.BookingId + " booked on " + b.BookingDate + "from" + b.BookingStartDate + " to" + b.BookingEnddate
-               });
-            ViewBag.BookingId = new SelectList(bookings, "Value", "Text");
-            return View();
+          
+            
+
+           
+           
             //ViewBag.BookingId = new SelectList(db.Bookings, "BookingId", "FirstName");
             //ViewBag.MemberId = new SelectList(db.Members, "MemberId", "Email");
             //return View();
@@ -98,14 +115,15 @@ namespace TentsTrailersIAD.Controllers
 
                         EmailSender mail = new EmailSender();
                         mail.Send(toEmail, subject, contents);
-                        ViewBag.Result = "Thank You. Your booking details have been sent to registered email address!";
+                        Session["Message"] = "Your booking details have been sent to registered email address!";
+                        //ViewBag.Result = "Thank You. Your booking details have been sent to registered email address!";
                         return RedirectToAction("Rate", "Ratings");
                     }
                     catch
                     {
                         return View();
                     }
-                    
+
                 }
 
             }
@@ -155,6 +173,7 @@ namespace TentsTrailersIAD.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "Id,MemberId,BookingId")] Registration registration)
         {
             if (ModelState.IsValid)
@@ -201,6 +220,11 @@ namespace TentsTrailersIAD.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public JsonResult GetBookings()
+        {
+            var events = db.Bookings.ToList();
+            return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
     }
 }

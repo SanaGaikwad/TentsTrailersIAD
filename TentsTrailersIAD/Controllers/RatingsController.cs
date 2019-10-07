@@ -122,7 +122,7 @@ namespace TentsTrailersIAD.Controllers
 
         public ActionResult Rate()
         {
-            
+            ViewBag.message = Session["Message"];
             return View();
         }
 

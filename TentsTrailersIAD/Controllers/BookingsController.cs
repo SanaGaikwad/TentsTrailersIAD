@@ -49,6 +49,8 @@ namespace TentsTrailersIAD.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(true)]
+        [Authorize]
         public ActionResult Create([Bind(Include = "BookingId,CampId,BookingDate,BookingStartDate,BookingEnddate,BookingStatus")] Booking booking, int id)
         {
 
@@ -68,10 +70,12 @@ namespace TentsTrailersIAD.Controllers
                     else
                     {
                         booking.CampId = id;
+     
                         booking.BookingDate = System.DateTime.Now;
                         booking.BookingStatus = "confirmed";
                         db.Bookings.Add(booking);
                         db.SaveChanges();
+                        Session["BookId"] = booking.BookingId;
                         return RedirectToAction("Create", "Members");
 
                     }
@@ -155,5 +159,7 @@ namespace TentsTrailersIAD.Controllers
             }
             base.Dispose(disposing);
         }
+
+       
     }
 }

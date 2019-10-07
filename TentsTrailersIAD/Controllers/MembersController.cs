@@ -49,6 +49,7 @@ namespace TentsTrailersIAD.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(true)]
         [Authorize]
         public ActionResult Create([Bind(Include = "MemberId,FirstName,LastName,ContactNo,Email,UserId")] Member member)
         {
