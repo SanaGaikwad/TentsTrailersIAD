@@ -12,6 +12,9 @@ using System.Net;
 using System.Net.Mail;
 using System.Data.SqlClient;
 using System.Configuration;
+using Microsoft.AspNet.Identity;
+using SendGrid.Helpers.Mail;
+using SendGrid;
 
 namespace TentsTrailersIAD.Controllers
 {
@@ -19,6 +22,7 @@ namespace TentsTrailersIAD.Controllers
     public class HomeController : Controller
     {
         private TentsTrailersIADEntities db = new TentsTrailersIADEntities();
+        
         public ActionResult Index()
         {
             return View();
@@ -38,46 +42,58 @@ namespace TentsTrailersIAD.Controllers
             return View();
         }
 
+        public ActionResult APIView()
+        {
+
+
+            return View();
+        }
+
         public ActionResult Contact()
         {
-            return View(new SendEmailViewModel());
+            return View(new BulkEmail());
         }
-             [HttpPost]
-        public ActionResult Contact(SendEmailViewModel model)
+        [HttpPost]
+        public ActionResult Contact(BulkEmail model, HttpPostedFileBase fileUploader)
         {
-            if (ModelState.IsValid)
+            var currentUser = User.Identity.GetUserId();
+            String email = db.AspNetUsers.Where(m => m.Id == currentUser).ToList().Single().Email.ToString();
+            MailMessage message = new MailMessage();
+            SmtpClient smtp = new SmtpClient();
+            message.Subject = model.Subject;
+            message.Body = model.Body;
+            var from = email;
+           
+            message.To.Add(new MailAddress("gaikwadsana@gmail.com"));
+            if (model.Upload != null)
             {
-                try
-                {
-                    String toEmail = model.ToEmail;
-                    String subject = model.Subject;
-                    String contents = model.Contents;
-
-                    
-
-                    EmailSender es = new EmailSender();
-                    es.Send(toEmail, subject, contents);
-
-                    ViewBag.Result = "Thank You! We will get back to you shortly.";
-
-                    ModelState.Clear();
-
-                    return View(new SendEmailViewModel());
-                }
-                catch
-                {
-                    return View();
-                }
+                string fileName = Path.GetFileName(model.Upload.FileName);
+                message.Attachments.Add(new System.Net.Mail.Attachment(model.Upload.InputStream, fileName));
             }
+            message.IsBodyHtml = false;
 
-            return View();
-        
+            smtp.Host = "smtp.gmail.com";
+            smtp.EnableSsl = true;
+            NetworkCredential networkCredential = new NetworkCredential("gaikwadsana@gmail.com", "s@n@_2210_");
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = networkCredential;
+            message.From = new MailAddress(from);
+            smtp.Port = 587;
+            smtp.Send(message);
+            ViewBag.Result = "Thank You! We will get back to you shortly.";
+
+            ModelState.Clear();
+
+            return View(new BulkEmail());
 
 
         }
+        //GET
         public ActionResult ContactInfo()
         {
+
             return View();
+ 
         }
 
         [HttpPost]
@@ -90,7 +106,7 @@ namespace TentsTrailersIAD.Controllers
                 SmtpClient smtp = new SmtpClient();
                 message.Subject = objModelMail.Subject;
                 message.Body = objModelMail.Body;
-                var from = "";
+                var from = "gaikwadsana@gmail.com";
                 message.From = new MailAddress(from);
                 //db connection
                 SqlCommand cmd = null;
@@ -107,13 +123,13 @@ namespace TentsTrailersIAD.Controllers
                     if (objModelMail.Upload != null)
                     {
                         string fileName = Path.GetFileName(objModelMail.Upload.FileName);
-                        message.Attachments.Add(new Attachment(objModelMail.Upload.InputStream, fileName));
+                        message.Attachments.Add(new System.Net.Mail.Attachment(objModelMail.Upload.InputStream, fileName));
                     }
                     message.IsBodyHtml = false;
 
                     smtp.Host = "smtp.gmail.com";
                     smtp.EnableSsl = true;
-                    NetworkCredential networkCredential = new NetworkCredential(from, "");
+                    NetworkCredential networkCredential = new NetworkCredential(from, "s@n@_2210_");
                     smtp.UseDefaultCredentials = false;
                     smtp.Credentials = networkCredential;
                     smtp.Port = 587;

@@ -26,13 +26,20 @@
                     {
                         <li>@Html.ActionLink("Campsites", "ListView", "Campsites")</li>
                         <li>@Html.ActionLink("Location", "SiteMap", "Home")</li>
-                        <li>@Html.ActionLink("About Us", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact Us", "Contact", "Home")</li>
                     }
                     @if (User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
                     {
                         <li>@Html.ActionLink("My bookings", "MyBookings", "Registrations")</li>
                     }
+                    @if (!User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("About Us", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact Us", "Contact", "Home")</li>
+                    }
+
+
+
+
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                     {
                         <li>@Html.ActionLink("Campsites", "Index", "Campsites")</li>
