@@ -10,6 +10,10 @@ namespace TentsTrailersIAD.Models
     {
 
         public string To { get; set; }
+
+        [Required(ErrorMessage = "Please enter your email address.")]
+        [EmailAddress]
+        public string From { get; set; }
         public string Subject { get; set; }
         public string Body { get; set; }
      

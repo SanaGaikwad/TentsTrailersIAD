@@ -37,8 +37,9 @@ namespace TentsTrailersIAD.Controllers
 
         public ActionResult SiteMap()
         {
-
-
+           var campid = db.Campsites.OrderByDescending(p => p.CampId).First().CampId;
+            string currlocation = db.Campsites.Where(c => c.CampId == campid).ToList().Single().Location.ToString();
+            ViewBag.locate = currlocation;
             return View();
         }
 
@@ -56,13 +57,13 @@ namespace TentsTrailersIAD.Controllers
         [HttpPost]
         public ActionResult Contact(BulkEmail model, HttpPostedFileBase fileUploader)
         {
-            var currentUser = User.Identity.GetUserId();
-            String email = db.AspNetUsers.Where(m => m.Id == currentUser).ToList().Single().Email.ToString();
+            //var currentUser = User.Identity.GetUserId();
+            //String email = db.AspNetUsers.Where(m => m.Id == currentUser).ToList().Single().Email.ToString();
             MailMessage message = new MailMessage();
             SmtpClient smtp = new SmtpClient();
             message.Subject = model.Subject;
             message.Body = model.Body;
-            var from = email;
+            var from = model.From;
            
             message.To.Add(new MailAddress("gaikwadsana@gmail.com"));
             if (model.Upload != null)
