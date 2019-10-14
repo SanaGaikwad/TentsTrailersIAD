@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -39,6 +40,7 @@ namespace TentsTrailersIAD.Controllers
         // GET: Ratings/Create
         public ActionResult Create()
         {
+
             ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email");
             return View();
         }
@@ -50,11 +52,14 @@ namespace TentsTrailersIAD.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "RatingId,Comment,Rating1,UserId")] Rating rating)
         {
+
             if (ModelState.IsValid)
             {
+                rating.UserId = User.Identity.GetUserId();
+               
                 db.Ratings.Add(rating);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
 
             ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", rating.UserId);
@@ -122,7 +127,7 @@ namespace TentsTrailersIAD.Controllers
 
         public ActionResult Rate()
         {
-            ViewBag.message = Session["Message"];
+            
             return View();
         }
 

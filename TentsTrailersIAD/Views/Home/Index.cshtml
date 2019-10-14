@@ -1,5 +1,13 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    if (@ViewBag.Message != null)
+    {
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!! </strong>@ViewBag.Message            
+        </div>
+    }
+   
 }
 <head>
 
@@ -52,7 +60,7 @@
     </div>
     <br>
     <div class=" wrapper" style="text-align:center">
-        <a href="https://localhost:44392/Campsites/ListView" class="button" style="align-content:center">Start Your Stay</a>
+        <a href="/Campsites/ListView" class="button" style="align-content:center">Start Your Stay</a>
     </div>
 
 

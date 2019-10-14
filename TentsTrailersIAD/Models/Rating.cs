@@ -11,11 +11,15 @@ namespace TentsTrailersIAD.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Rating
     {
+        
         public int RatingId { get; set; }
         public string Comment { get; set; }
+
+        [Display(Name = "Star Rating")]
         public int Rating1 { get; set; }
         public string UserId { get; set; }
     

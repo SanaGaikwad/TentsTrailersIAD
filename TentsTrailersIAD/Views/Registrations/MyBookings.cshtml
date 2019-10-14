@@ -1,16 +1,17 @@
 ﻿@model IEnumerable<TentsTrailersIAD.Models.Registration>
 @{
-    ViewBag.Title = "MyBookings";
+    ViewBag.Title = "My Bookings";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
     <head>
 
         @*<link href="~/Content/fullcalendar.min.css" rel="stylesheet" />
         <link href="~/Content/fullcalendar.print.css" rel="stylesheet" media="print"/>*@
-        <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/bootstrap/main.css" rel =" stylesheet"" />
-        <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/bootstrap/main.min.css" rel =" stylesheet" />
-    
+        <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/bootstrap/main.css" rel=" stylesheet" "   />
+        <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/bootstrap/main.min.css" rel=" stylesheet" />
+
         @Styles.Render("~/Content/MyScripts/Campsite_section_images.css")
+        @Styles.Render("~/Content/MyScripts/StayYourStay.css")
 
 
     </head>
@@ -73,23 +74,34 @@
         </tbody>
     </table>
 </div>
+<div class=" wrapper" style="text-align:center">
+    <a href="/Ratings/Create" class="button"  id="button-rate" style="align-content:center">Rate Experience</a>
+</div>
+
 
 @section Scripts {
     @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.js")
     @Scripts.Render("~/Scripts/DataTables/dataTables.bootstrap.js")
-   <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/bootstrap/main.js" type="text/css" rel="stylesheet"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/bootstrap/main.min.js " type="text/css" rel="stylesheet">></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"type="text/css" rel="stylesheet"> ></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"type="text/css" rel="stylesheet"> ></script>
-    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/bootstrap/main.js" type="text/css" rel="stylesheet">
+    </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/bootstrap/main.min.js " type="text/css" rel="stylesheet">
+        >
+    </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js" type="text/css" rel="stylesheet">
+        >
+    </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" type="text/css" rel="stylesheet">
+        >
+    </script>
+
 
     <script type="text/javascript" async>
         $(document).ready(function () {
             $('.table').DataTable();
         });
- 
-   </script>
-   
+
+    </script>
+
 
 }
 <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />

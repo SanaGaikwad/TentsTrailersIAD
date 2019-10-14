@@ -25,14 +25,14 @@ namespace TentsTrailersIAD.Controllers
         
         public ActionResult Index()
         {
+            //ViewBag.message = Session["Message"];
+            //Session["Message"] = "";
             return View();
         }
 
         public ActionResult About()
         {
-          
-
-            return View();
+            return View(db.Ratings.ToList());
         }
 
         public ActionResult SiteMap()

@@ -116,8 +116,8 @@ namespace TentsTrailersIAD.Controllers
                         EmailSender mail = new EmailSender();
                         mail.Send("gaikwadsana@gmail.com",toEmail, subject, contents);
                         Session["Message"] = "Your booking details have been sent to registered email address!";
-                        //ViewBag.Result = "Thank You. Your booking details have been sent to registered email address!";
-                        return RedirectToAction("Rate", "Ratings");
+                      
+                        return RedirectToAction("Index", "Home");
                     }
                     catch
                     {
