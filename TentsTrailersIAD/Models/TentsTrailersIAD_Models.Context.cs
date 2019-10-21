@@ -32,5 +32,8 @@ namespace TentsTrailersIAD.Models
         public virtual DbSet<Member> Members { get; set; }
         public virtual DbSet<Rating> Ratings { get; set; }
         public virtual DbSet<Registration> Registrations { get; set; }
+        public virtual DbSet<Precipitate> Precipitates { get; set; }
+        public virtual DbSet<PrecipitateMAX> PrecipitateMAXes { get; set; }
+        public virtual DbSet<PrecipitateMIN> PrecipitateMINs { get; set; }
     }
 }

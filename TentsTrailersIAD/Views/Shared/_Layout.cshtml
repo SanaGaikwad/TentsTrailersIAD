@@ -30,6 +30,7 @@
                     @if (User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
                     {
                         <li>@Html.ActionLink("My bookings", "MyBookings", "Registrations")</li>
+
                     }
                     @if (!User.IsInRole("Admin"))
                     {
@@ -44,6 +45,7 @@
                     {
                         <li>@Html.ActionLink("Campsites", "Index", "Campsites")</li>
                         <li>@Html.ActionLink("Bookings", "Index", "Bookings")</li>
+                        <li>@Html.ActionLink("Weather Updates", "Report", "Precipitates")</li>
                         <li>@Html.ActionLink("Contact Us", "ContactInfo", "Home")</li>
                     }
 

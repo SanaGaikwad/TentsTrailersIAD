@@ -93,6 +93,7 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -228,6 +229,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
+    <Compile Include="Controllers\PrecipitatesController.cs" />
     <Compile Include="Controllers\RatingsController.cs" />
     <Compile Include="Controllers\RegistrationsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -253,6 +255,15 @@
       <DependentUpon>TentsTrailersIAD_Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Parent.cs" />
+    <Compile Include="Models\Precipitate.cs">
+      <DependentUpon>TentsTrailersIAD_Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PrecipitateMAX.cs">
+      <DependentUpon>TentsTrailersIAD_Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PrecipitateMIN.cs">
+      <DependentUpon>TentsTrailersIAD_Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Rating.cs">
       <DependentUpon>TentsTrailersIAD_Models.tt</DependentUpon>
     </Compile>
@@ -886,6 +897,12 @@
     <Content Include="Views\Ratings\Rate.cshtml" />
     <Content Include="Views\Home\ContactInfo.cshtml" />
     <Content Include="Views\Home\APIView.cshtml" />
+    <Content Include="Views\Precipitates\Create.cshtml" />
+    <Content Include="Views\Precipitates\Delete.cshtml" />
+    <Content Include="Views\Precipitates\Details.cshtml" />
+    <Content Include="Views\Precipitates\Edit.cshtml" />
+    <Content Include="Views\Precipitates\Index.cshtml" />
+    <Content Include="Views\Precipitates\Report.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

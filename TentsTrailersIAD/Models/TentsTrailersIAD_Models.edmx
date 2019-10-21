@@ -70,6 +70,30 @@
           <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
+        <EntityType Name="Precipitate">
+          <Key>
+            <PropertyRef Name="PrecipitateId" />
+          </Key>
+          <Property Name="PrecipitateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MONTHS" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Precipitation" Type="decimal" Precision="4" Scale="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PrecipitateMAX">
+          <Key>
+            <PropertyRef Name="PrecipitateMAXId" />
+          </Key>
+          <Property Name="PrecipitateMAXId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MONTHS" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PrecipitationMAX" Type="decimal" Precision="4" Scale="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PrecipitateMIN">
+          <Key>
+            <PropertyRef Name="PrecipitateMINId" />
+          </Key>
+          <Property Name="PrecipitateMINId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MONTHS" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PrecipitationMin" Type="decimal" Precision="4" Scale="1" Nullable="false" />
+        </EntityType>
         <EntityType Name="Rating">
           <Key>
             <PropertyRef Name="RatingId" />
@@ -183,6 +207,9 @@
           <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Campsite" EntityType="Self.Campsite" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Precipitate" EntityType="Self.Precipitate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PrecipitateMAX" EntityType="Self.PrecipitateMAX" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PrecipitateMIN" EntityType="Self.PrecipitateMIN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rating" EntityType="Self.Rating" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Registration" EntityType="Self.Registration" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Booking_Campsite" Association="Self.FK_Booking_Campsite">
@@ -401,7 +428,34 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="Precipitates" EntityType="TentsTrailersIADModels.Precipitate" />
+          <EntitySet Name="PrecipitateMAXes" EntityType="TentsTrailersIADModels.PrecipitateMAX" />
+          <EntitySet Name="PrecipitateMINs" EntityType="TentsTrailersIADModels.PrecipitateMIN" />
         </EntityContainer>
+        <EntityType Name="Precipitate">
+          <Key>
+            <PropertyRef Name="PrecipitateId" />
+          </Key>
+          <Property Name="PrecipitateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MONTHS" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Precipitation" Type="Decimal" Nullable="false" Precision="4" Scale="1" />
+        </EntityType>
+        <EntityType Name="PrecipitateMAX">
+          <Key>
+            <PropertyRef Name="PrecipitateMAXId" />
+          </Key>
+          <Property Name="PrecipitateMAXId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MONTHS" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PrecipitationMAX" Type="Decimal" Nullable="false" Precision="4" Scale="1" />
+        </EntityType>
+        <EntityType Name="PrecipitateMIN">
+          <Key>
+            <PropertyRef Name="PrecipitateMINId" />
+          </Key>
+          <Property Name="PrecipitateMINId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MONTHS" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PrecipitationMin" Type="Decimal" Nullable="false" Precision="4" Scale="1" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -497,6 +551,33 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Precipitates">
+            <EntityTypeMapping TypeName="TentsTrailersIADModels.Precipitate">
+              <MappingFragment StoreEntitySet="Precipitate">
+                <ScalarProperty Name="Precipitation" ColumnName="Precipitation" />
+                <ScalarProperty Name="MONTHS" ColumnName="MONTHS" />
+                <ScalarProperty Name="PrecipitateId" ColumnName="PrecipitateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrecipitateMAXes">
+            <EntityTypeMapping TypeName="TentsTrailersIADModels.PrecipitateMAX">
+              <MappingFragment StoreEntitySet="PrecipitateMAX">
+                <ScalarProperty Name="PrecipitationMAX" ColumnName="PrecipitationMAX" />
+                <ScalarProperty Name="MONTHS" ColumnName="MONTHS" />
+                <ScalarProperty Name="PrecipitateMAXId" ColumnName="PrecipitateMAXId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrecipitateMINs">
+            <EntityTypeMapping TypeName="TentsTrailersIADModels.PrecipitateMIN">
+              <MappingFragment StoreEntitySet="PrecipitateMIN">
+                <ScalarProperty Name="PrecipitationMin" ColumnName="PrecipitationMin" />
+                <ScalarProperty Name="MONTHS" ColumnName="MONTHS" />
+                <ScalarProperty Name="PrecipitateMINId" ColumnName="PrecipitateMINId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

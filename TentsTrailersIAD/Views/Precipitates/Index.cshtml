@@ -1,0 +1,40 @@
+﻿@model IEnumerable<TentsTrailersIAD.Models.Precipitate>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MONTHS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Precipitation)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MONTHS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Precipitation)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PrecipitateId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PrecipitateId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PrecipitateId })
+        </td>
+    </tr>
+}
+
+</table>

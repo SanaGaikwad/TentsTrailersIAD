@@ -93,8 +93,8 @@ namespace TentsTrailersIAD.Controllers
         public ActionResult ContactInfo()
         {
 
-            return View();
- 
+            return View(new BulkEmail());
+
         }
 
         [HttpPost]
