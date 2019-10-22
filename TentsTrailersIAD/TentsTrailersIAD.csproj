@@ -478,7 +478,11 @@
     <Content Include="Content\Images\camp6.jpg" />
     <Content Include="Content\Images\camp7.jpg" />
     <Content Include="Content\Images\camp8.jpg" />
+    <Content Include="Content\Images\carousel-1.jpg" />
+    <Content Include="Content\Images\carousel-2.jpg" />
+    <Content Include="Content\Images\carousel-3.jpg" />
     <Content Include="Content\Images\image9.jpg" />
+    <Content Include="Content\Images\karousel-1.1.jpg" />
     <Content Include="Content\Images\koalas.jpg" />
     <Content Include="Content\Images\waterfall.jpeg" />
     <Content Include="Content\MyScripts\Campsite_section_images.css" />
@@ -634,6 +638,7 @@
     <Content Include="Content\bootstrap-datepicker3.css.map" />
     <Content Include="Content\bootstrap-datepicker.standalone.css.map" />
     <Content Include="Content\bootstrap-datepicker.css.map" />
+    <None Include="Properties\PublishProfiles\TentsTrailers - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\fullcalendar.helper.js" />
     <Content Include="Scripts\fullcalendar.helper.min.js" />

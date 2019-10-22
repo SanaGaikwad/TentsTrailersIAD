@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace TentsTrailersIAD.Models
 {
@@ -17,6 +18,7 @@ namespace TentsTrailersIAD.Models
         public string Subject { get; set; }
         public string Body { get; set; }
      
+        
         public HttpPostedFileBase Upload { get; set; }
     }
 }

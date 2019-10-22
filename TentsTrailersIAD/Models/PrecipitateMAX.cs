@@ -11,17 +11,11 @@ namespace TentsTrailersIAD.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.Runtime.Serialization;
-
-    [DataContract]
+    
     public partial class PrecipitateMAX
     {
-      
         public int PrecipitateMAXId { get; set; }
-        [DataMember(Name = "label")]
         public string MONTHS { get; set; }
-
-        [DataMember(Name = "y")]
         public decimal PrecipitationMAX { get; set; }
     }
 }
