@@ -7,15 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+
 namespace TentsTrailersIAD.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+
+    [DataContract]
     public partial class Precipitate
     {
+
         public int PrecipitateId { get; set; }
+
+        [DataMember(Name = "label")]
         public string MONTHS { get; set; }
+
+        [DataMember(Name = "y")]
         public decimal Precipitation { get; set; }
     }
 }
