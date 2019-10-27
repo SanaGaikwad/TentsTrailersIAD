@@ -49,7 +49,7 @@ namespace TentsTrailersIAD.Controllers
         // GET: Registrations/Create
         public ActionResult Create()
         {
-         
+
             string currentUserId = User.Identity.GetUserId();
             var fullName = db.Members.Where(m => m.UserId == currentUserId)
                .Select(a => new SelectListItem
@@ -77,16 +77,6 @@ namespace TentsTrailersIAD.Controllers
                 return View();
             }
 
-           
-            
-          
-            
-
-           
-           
-            //ViewBag.BookingId = new SelectList(db.Bookings, "BookingId", "FirstName");
-            //ViewBag.MemberId = new SelectList(db.Members, "MemberId", "Email");
-            //return View();
         }
 
         // POST: Registrations/Create
@@ -112,11 +102,11 @@ namespace TentsTrailersIAD.Controllers
                         string toEmail = db.Members.Where(m => m.MemberId == registration.MemberId).ToList().Single().Email.ToString();
                         string subject = "Booking Confirmation: Tents&Trailers";
                         string contents = "Your Booking has been confirmed: " + BookingDetails + " Status " + status + "on" + Bookingdate;
-
+                        //Sending booking details to members
                         EmailSender mail = new EmailSender();
-                        mail.Send("gaikwadsana@gmail.com",toEmail, subject, contents);
+                        mail.Send("gaikwadsana@gmail.com", toEmail, subject, contents);
                         Session["Message"] = "Your booking details have been sent to registered email address!";
-                      
+
                         return RedirectToAction("Index", "Home");
                     }
                     catch

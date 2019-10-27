@@ -18,7 +18,7 @@
         <AssociationConnector Association="TentsTrailersIADModels.FK_Booking_Registration" ManuallyRouted="false" />
         <AssociationConnector Association="TentsTrailersIADModels.FK_Member_Registration" ManuallyRouted="false" />
         <AssociationConnector Association="TentsTrailersIADModels.AspNetUserRoles" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="TentsTrailersIADModels.Precipitate" Width="1.5" PointX="7.25" PointY="8.875" />
+        <EntityTypeShape EntityType="TentsTrailersIADModels.Precipitate" Width="1.5" PointX="7.25" PointY="9" />
         <EntityTypeShape EntityType="TentsTrailersIADModels.PrecipitateMAX" Width="1.5" PointX="9.625" PointY="9.125" />
         <EntityTypeShape EntityType="TentsTrailersIADModels.PrecipitateMIN" Width="1.5" PointX="12.125" PointY="9.125" />
       </Diagram>

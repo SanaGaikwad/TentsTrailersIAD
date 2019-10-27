@@ -60,7 +60,18 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CampId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.CampId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
+}
+else
+{
+    <p>
+        @Html.ActionLink("Home", "Index", "Home") |
+        @Html.ActionLink("Back", "ListView", "Campsites")
+    </p>
+}

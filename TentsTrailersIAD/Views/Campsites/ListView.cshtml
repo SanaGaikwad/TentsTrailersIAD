@@ -3,136 +3,137 @@
     ViewBag.Title = "ListView";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    <head>
-        @Styles.Render("~/Content/MyScripts/Campsite_section_images.css")
-
-    </head>
-   
-
-<h1>Choose your stay</h1>
+<head>
+    @Styles.Render("~/Content/MyScripts/Campsite_section_images.css")
+    @Styles.Render("~/Content/MyScripts/Style.css")
+</head>
 
 
-@*<div style=" width=90%; margin: 0 auto;">*@
 
-<table class="table" style="margin-left:10px" width="100%">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.CampId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Accomodates)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price) (AUD)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Location)
-            </th>
-            <th></th>
-
-
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CampId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Type)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Accomodates)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Location)
-                </td>
-
-                <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.CampId })
+<div class=" container body-content ">
+    <h1>Choose your stay</h1>
+    <section>
+        <table class="table" style="margin-left:10px" width="100%">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CampId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Type)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Accomodates)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price) (AUD)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Location)
+                    </th>
+                    <th></th>
 
 
-                    @if (User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
-                    {
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CampId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Accomodates)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Location)
+                        </td>
 
-                     @Html.ActionLink("Book", "Create", "Bookings", new { @id = item.CampId },null)
-                    }
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                        <td>
+                            @Html.ActionLink("Details", "Details", new { id = item.CampId })
 
-<br>
 
-<div class="row">
+                            @if (User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
+                            {
 
-    <div class="column">
-        <img src="~/Content/Images/camp1.jpg" style="width:100%" />
+                                @Html.ActionLink("Book", "Create", "Bookings", new { @id = item.CampId }, null)
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
+
+    <br>
+
+    <div class="row gal">
+
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            @*image ref: https://thriveglobal.com/tags/motivation-tips/page/3/*@
+            <img class="img-responsive" src="~/Content/Images/camp1.jpeg" style="width:100%" />
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            @*image ref: https://ruwimgt.pw/glamping-tent-accommodation.html*@
+            <img class="img-responsive" src="~/Content/Images/camp2.jpg" style="width:100%" />
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            @*image ref: https://www.gogoodfellow.com/events/inks-lake-camp-and-hike/*@
+            <img class="img-responsive" src="~/Content/Images/camp3.jpg" style="width:100%" />
+        </div>
+
+
     </div>
-    <div class="column">
-        <img src="~/Content/Images/camp2.jpg" style="width:100%" />
-    </div>
-    <div class="column">
-        <img src="~/Content/Images/camp3.jpg" style="width:100%" />
-    </div>
-    <div class="column">
-        <img src="~/Content/Images/camp5a.jpg"  style="width:100%"/>
-    </div>
 
+
+
+    <div class="row">
+
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            @*image ref: http://www.familydoctorsplus.com.au/why-pre-travel-medical-advice-is-vital/*@
+            <img class="img-responsive" src="~/Content/Images/camp4.jpg" style="width:100%" />
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            @*image ref: https://www.campreservations.ca/campground/medina-highpoint-708*@
+            <img class="img-responsive" src="~/Content/Images/camp5.jpg" style="width:100%" />
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            @*image ref: https://ammcobus.com/images/free-camping-spots-mt-hood-national-forest*@
+            <img class="img-responsive" src="~/Content/Images/camp6.png" style="width:100%" />
+        </div>
+
+    </div>
 </div>
 
 
 
-<div class="row">
 
-    <div class="column">
+    @section Scripts {
+        @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.js")
+        @Scripts.Render("~/Scripts/DataTables/dataTables.bootstrap.js")
+        <script type="text/javascript" async>
+            $(document).ready(function () {
+                $('.table').DataTable({
+                    responsive:true
+                });
+            });
+        </script>
 
-        <img src="~/Content/Images/camp4.jpg" style="width:100%" />
-    </div>
-    <div class="column">
-
-        <img src="~/Content/Images/camp8.jpg" style="width:100%" />
-    </div>
-
-    <div class="column">
-
-        <img src="~/Content/Images/camp6.jpg" style="width:100%" />
-    </div>
-    <div class="column">
-
-        <img src="~/Content/Images/camp7.jpg" style="width:100%" />
-    </div>
-</div>
-
-
-
-
-@section Scripts {
-    @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.js")
-    @Scripts.Render("~/Scripts/DataTables/dataTables.bootstrap.js")
-    <script type="text/javascript" async>
-        $(document).ready(function () {
-            $('.table').DataTable();
-        });
-    </script>
-
-}
-<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    }
+    <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
 
 

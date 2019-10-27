@@ -46,15 +46,13 @@ namespace TentsTrailersIAD.Controllers
         // POST: Bookings/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-
+        //Create a new booking
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(true)]
         [Authorize]
         public ActionResult Create([Bind(Include = "BookingId,CampId,BookingDate,BookingStartDate,BookingEnddate,BookingStatus")] Booking booking, int id)
         {
-
-
             if (ModelState.IsValid)
             {
                 try

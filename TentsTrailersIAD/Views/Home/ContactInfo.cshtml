@@ -2,14 +2,17 @@
 @{
     ViewBag.Title = "Contact";
 }
-<h2>@ViewBag.Title.</h2>
 
+<h1>Contact Members</h1>
+<head>
+    @Styles.Render("~/Content/MyScripts/Style.css")
+</head>
 
 @using (Html.BeginForm("ContactInfo", "Home", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
-        <h4>Send your comments.</h4>
+        
         <hr />
         @*<div class="form-group">
                 @Html.LabelFor(m => m.To, new { @class = "col-md-2 control-label" })
@@ -19,7 +22,7 @@
                 </div>
             </div>*@
         <div class="form-group">
-            @Html.LabelFor(m => m.Member.Email, new { @class = "col-md-2 control-label" })
+            @Html.LabelFor(m => m.Member.Email, "Email To *" ,new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
 
                 @Html.ListBoxFor(m => m.SelectedMembers, Model.Members)
@@ -48,14 +51,14 @@
         <div class="form-group">
             @Html.LabelFor(m => m.BulkEmail.Body, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.TextAreaFor(m => m.BulkEmail.Body, new { @class = "form-control" })
+                @Html.TextAreaFor(m => m.BulkEmail.Body, new { @class = "form-control",@id = "mytextarea" })
                 @Html.ValidationMessageFor(m => m.BulkEmail.Body)
             </div>
         </div>
       
 
         <div class="form-group">
-            @Html.LabelFor(m => m.BulkEmail.Upload, new { @class = "col-md-2 control-label" })
+            @Html.LabelFor(m => m.BulkEmail.Upload,"Attachment", new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
                 <input type="file" name="upload" />
             </div>
@@ -64,11 +67,16 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" class="btn btn-default" value="Send" />
+                <input type="submit" class=" btn btn-success" value="Send" />
             </div>
         </div>
         </div>
         }
         @section Scripts {
             @Scripts.Render("~/bundles/jqueryval")
+<script>
+    tinymce.init({
+        selector: "#mytextarea"
+    });
+            </script>
         }

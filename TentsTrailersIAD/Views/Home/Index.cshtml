@@ -13,13 +13,17 @@
 }
 <head>
 
-    @Styles.Render("~/Content/MyScripts/StayYourStay.css")
-
+    @Styles.Render("~/Content/MyScripts/Style.css")
+    <style>
+        .imgs {
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
-
-    <div class="container" style="align-content:center; width:100%">
+    @*Carousel Banner*@
+    <div class="" style="align-content:center; width:100%">
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -29,24 +33,38 @@
             </ol>
             <!-- Wrapper for slides -->
            
-            <div class="carousel-inner" style="height:inherit; width:inherit; margin-top:50px;align-content:center;">
-                <div class="item" >
-                    <img src="~/Content/Images/carousel-1.jpg"  class="image-responsive"alt="Camping park"  >
+            <div class="carousel-inner" style="height:inherit; width:inherit; align-content:center;">
+                <div class="item">
+                    @*image ref: http://freshwallpapers.net/places/vernal-fall.html*@
+                    <img src="~/Content/Images/c-1.jpg" class="image-responsive imgs" alt="Camping park">
                     <div class="carousel-caption">
                         <h1>Gear up</h1>
+                        <div class=" wrapper" style="text-align:center">
+                            <a href="/Campsites/ListView" class="button" style="align-content:center">Start Your Stay</a>
+                        </div>
                     </div>
                 </div>
                 <div class="item active">
-                    <img src="~/Content/Images/karousel-1.1.jpg" alt="koala" class="image-responsive" >
+                    @*image ref:  http://albumarium.com/56b056ae76707309176a0400-koala/56b059e97670737524661400*@
+                    <img src="~/Content/Images/c-2.jpg" alt="koala" class="image-responsive imgs">
                     <div class="carousel-caption">
                         <h1>Camping with Koalas</h1>
+                        <div class=" wrapper" style="text-align:center">
+                            <a href="/Campsites/ListView" class="button" style="align-content:center">Start Your Stay</a>
+                        </div>
                     </div>
+
                 </div>
-                <div class="item" >
-                    <img src="~/Content/Images/carousel-3.jpg" class="image-responsive" alt="Waterfall">
+                <div class="item">
+                    @*image ref:https://wallpaperaccess.com/hiking*@
+                    <img src="~/Content/Images/c-3.jpg" class="image-responsive imgs" alt="Waterfall">
                     <div class="carousel-caption">
                         <h1>In the midst of Nature</h1>
+                        <div class=" wrapper" style="text-align:center">
+                            <a href="/Campsites/ListView" class="button" style="align-content:center">Start Your Stay</a>
+                        </div>
                     </div>
+
                 </div>
 
             </div>
@@ -62,10 +80,4 @@
             </a>
         </div>
     
-    <br>
-    <div class=" wrapper" style="text-align:center">
-        <a href="/Campsites/ListView" class="button" style="align-content:center">Start Your Stay</a>
-    </div>
-
-
 </body>

@@ -11,7 +11,8 @@ namespace TentsTrailersIAD.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Campsite
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,11 +21,20 @@ namespace TentsTrailersIAD.Models
             this.Bookings = new HashSet<Booking>();
         }
     
+       
         public int CampId { get; set; }
         public string Description { get; set; }
+
+        [Required(ErrorMessage = "Please enter a valid price")]
         public int Price { get; set; }
+
+        [Required(ErrorMessage = "Please enter a valid camp type")]
         public string Type { get; set; }
+
+        [Required(ErrorMessage = "Please enter the number of people the campsite accomodates")]
         public int Accomodates { get; set; }
+
+        [Required(ErrorMessage = "Please enter a valid campsite location")]
         public string Location { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

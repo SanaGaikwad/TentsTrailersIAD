@@ -11,7 +11,9 @@ namespace TentsTrailersIAD.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class Booking
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,14 +21,31 @@ namespace TentsTrailersIAD.Models
         {
             this.Registrations = new HashSet<Registration>();
         }
-    
+
         public int BookingId { get; set; }
         public int CampId { get; set; }
+
+        [Column(TypeName = "date")]
+
+        [Display(Name = "Booking Date")]
+        string currentDate = System.DateTime.Now.ToString();
+
         public System.DateTime BookingDate { get; set; }
+
+        [Required(ErrorMessage ="Please enter your booking start date")]
+        [Column(TypeName = "date")]
+        //[DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
+        [Display(Name = " Booking Start Date")]
         public System.DateTime BookingStartDate { get; set; }
+
+        [Required(ErrorMessage = "Please enter your booking End date")]
+        [Column(TypeName = "date")]
+        [Display(Name = " Booking End Date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
         public System.DateTime BookingEnddate { get; set; }
         public string BookingStatus { get; set; }
-    
+
         public virtual Campsite Campsite { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Registration> Registrations { get; set; }

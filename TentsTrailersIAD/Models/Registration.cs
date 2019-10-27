@@ -11,13 +11,18 @@ namespace TentsTrailersIAD.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Registration
     {
         public int Id { get; set; }
+
+        [Display(Name = "MemberId")]
         public int MemberId { get; set; }
+
+        [Display(Name = "BookingId")]
         public int BookingId { get; set; }
-    
+
         public virtual Booking Booking { get; set; }
         public virtual Member Member { get; set; }
     }

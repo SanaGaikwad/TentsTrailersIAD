@@ -4,17 +4,19 @@
 }
 
 <head>
-    @Styles.Render("~/Content/MyScripts/Campsite_section_images.css")
+
+    @Styles.Render("~/Content/MyScripts/Style.css")
+
 
 </head>
 
-
 <h1>About Us</h1>
 <br>
-<div>
+<div class="container body-content">
+
     <div class="row">
 
-        <div class=" column-content">
+        <div class="col-lg-6 col-md-6 col-sm-12">
             <h2>Tents & Trailers</h2>
             <br>
             <p style="text-align: justify">
@@ -25,8 +27,8 @@
         </div>
 
 
-        <div class=" column-content">
-            <iframe width="560" height="315" align="right"
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <iframe width="600px" height="400px" align="right"
                     src="https://www.youtube.com/embed/WyGdYQazQLc"
                     frameborder="0" allow="accelerometer; autoplay; encrypted-media;
         gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -35,11 +37,12 @@
     <br>
     <div class="row">
 
-        <div class=" column-content">
+        <div class="col-lg-6 col-md-6 col-sm-12">
             <br>
-            <img src="~/Content/Images/aboutus.jpg" style="width:100%" />
+            @* image ref: https://memphite.com/dGVudHMgbmFwaWVyIG56/*@
+            <img src="~/Content/Images/about-us-1.jpg" style="width:100%" />
         </div>
-        <div class=" column-content">
+        <div class="col-lg-6 col-md-6 col-sm-12">
             <h2>Gear Up</h2>
             <br>
             <p style="text-align: justify">
@@ -51,7 +54,7 @@
     </div>
 
     <div class="row">
-        <div class=" column-content">
+        <div class="col-lg-6 col-md-6 col-sm-12">
             <h2>Backpacking</h2>
             <br>
             <p style="text-align: justify">
@@ -62,36 +65,37 @@
                 National Park including “The Great Ocean Walk” Australia’s premier walking trail.
             </p>
         </div>
-        <div class=" column-content">
+        <div class="col-lg-6 col-md-6 col-sm-12">
             <br>
-            <img src="~/Content/Images/backpack.jpg" style="width:100%" />
+            @*image ref: http://www.sarayhan.com.tr/aktiviteler*@
+            <img src="~/Content/Images/about-us-2.jpg" style="width:100%" />
         </div>
 
     </div>
 
-</div>
-<hr />
 
-
-<div class="review">
-    <h3>Customer Reviews</h3>
-    <h4 style="font-style:italic">No. of Reviews: @Model.Count()</h4>
-    <h4 style="font-style:italic">Rating: @Model.Average(i => i.Rating1).ToString("0.00") / 5</h4>
     <hr />
 
-
-    @foreach (var item in Model)
-    {
-        <h5><b>Customer</b></h5>
-        <h6> @Html.DisplayFor(modelItem => item.AspNetUser.Email) </h6>
-        <h5><b>Comment</b></h5>
-        <h6> @Html.DisplayFor(modelItem => item.Comment) </h6>
-        <h5><b>Rating</b></h5>
-        <h6> @Html.DisplayFor(modelItem => item.Rating1) </h6>
-        <br />
-    }
+    <section>
+        <div class="review">
+            <h2>Customer Reviews</h2>
+            <h4 style="font-style:italic">No. of Reviews: @Model.Count()</h4>
+            <h4 style="font-style:italic">Rating: @Model.Average(i => i.Rating1).ToString("0.00") / 5</h4>
+            <hr />
 
 
+            @foreach (var item in Model)
+            {
+                <h5><b>Customer</b></h5>
+                <h6> @Html.DisplayFor(modelItem => item.AspNetUser.Email) </h6>
+                <h5><b>Comment</b></h5>
+                <h6> @Html.DisplayFor(modelItem => item.Comment) </h6>
+                <h5><b>Rating</b></h5>
+                <h6> @Html.DisplayFor(modelItem => item.Rating1) </h6>
+                <br />
+            }
 
+        </div>
+    </section>
 </div>
 
