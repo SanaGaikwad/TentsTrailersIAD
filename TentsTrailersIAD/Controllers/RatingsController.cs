@@ -41,7 +41,7 @@ namespace TentsTrailersIAD.Controllers
         public ActionResult Create()
         {
 
-            ViewBag.UserId = new SelectList(db.AspNetUsers, "RatingId", "Email");
+            ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email");
             return View();
         }
 
@@ -56,13 +56,13 @@ namespace TentsTrailersIAD.Controllers
             if (ModelState.IsValid)
             {
                 rating.UserId = User.Identity.GetUserId();
-               
+
                 db.Ratings.Add(rating);
                 db.SaveChanges();
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
 
-            ViewBag.UserId = new SelectList(db.AspNetUsers, "RatingId", "Email", rating.UserId);
+            ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", rating.UserId);
             return View(rating);
         }
 
@@ -78,7 +78,7 @@ namespace TentsTrailersIAD.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.UserId = new SelectList(db.AspNetUsers, "RatingId", "Email", rating.UserId);
+            ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", rating.UserId);
             return View(rating);
         }
 
@@ -95,7 +95,7 @@ namespace TentsTrailersIAD.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UserId = new SelectList(db.AspNetUsers, "RatingId", "Email", rating.UserId);
+            ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", rating.UserId);
             return View(rating);
         }
 
@@ -127,7 +127,7 @@ namespace TentsTrailersIAD.Controllers
 
         public ActionResult Rate()
         {
-            
+
             return View();
         }
 

@@ -19,6 +19,10 @@ namespace TentsTrailersIAD.Controllers
         // GET: Registrations
         public ActionResult Index()
         {
+            if(User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                return View(db.Registrations.ToList());
+            }
             string currentUserId = User.Identity.GetUserId();
             var registrations = db.Registrations.Where(r => r.Member.UserId == currentUserId).Include(r => r.Booking).Include(r => r.Member);
             return View(registrations.ToList());

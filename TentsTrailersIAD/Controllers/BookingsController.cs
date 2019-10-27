@@ -145,10 +145,20 @@ namespace TentsTrailersIAD.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Booking booking = db.Bookings.Find(id);
-            db.Bookings.Remove(booking);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                Booking booking = db.Bookings.Find(id);
+                Registration registration = db.Registrations.Find(id);
+                db.Registrations.Remove(registration);
+                db.Bookings.Remove(booking);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+            
         }
 
         protected override void Dispose(bool disposing)
