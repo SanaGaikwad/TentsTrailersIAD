@@ -1,6 +1,14 @@
 ﻿@model TentsTrailersIAD.Models.Parent
 @{
     ViewBag.Title = "Contact";
+     if (@ViewBag.Result != null)
+    {
+        <div class="alert alert-success alert-dismissible">
+            @ViewBag.Result
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            @*<div class="alert alert-info">@ViewBag.Result</div>*@
+        </div>
+    }
 }
 
 <h1>Contact Members</h1>

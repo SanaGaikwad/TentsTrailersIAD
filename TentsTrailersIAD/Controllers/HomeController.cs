@@ -147,7 +147,7 @@ namespace TentsTrailersIAD.Controllers
                 message.From = new MailAddress(from);
                 smtp.Port = 587;
                 smtp.Send(message);
-                ViewBag.Result = "Thank You! We will get back to you shortly.";
+                ViewBag.Result = "Thank You! Your email has been sent.";
 
                 ModelState.Clear();
                 var vm = new Parent();

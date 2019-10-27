@@ -145,6 +145,12 @@ h3 {
     align-content: center;
 }
 
+#awxLocationInfo {
+    color: #5cb85c;
+    font-weight: bold;
+    align-content: center;
+}
+
 
 .travel {
     text-align: center;

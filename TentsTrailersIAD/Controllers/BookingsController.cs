@@ -53,6 +53,8 @@ namespace TentsTrailersIAD.Controllers
         [Authorize]
         public ActionResult Create([Bind(Include = "BookingId,CampId,BookingDate,BookingStartDate,BookingEnddate,BookingStatus")] Booking booking, int id)
         {
+            
+
             if (ModelState.IsValid)
             {
                 try
